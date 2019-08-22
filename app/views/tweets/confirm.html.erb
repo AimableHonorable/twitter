@@ -4,5 +4,10 @@
     <%= form.hidden_field :content %>
 
     <p>Body:<%= @tweet.content %></p>
-  <%= form.submit  "submit" %>
+  <%= form.submit  "Confirm" %>
+<% end %>
+
+<%= form_with(model: @tweet, url: new_tweet_path, local: true, method: 'get') do |form| %>
+  <%= form.hidden_field :content %>
+  <%= form.submit "back", name: 'back' %>
 <% end %>

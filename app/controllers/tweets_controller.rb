@@ -14,7 +14,11 @@ class TweetsController < ApplicationController
 
   # GET /tweets/new
   def new
-    @tweet = Tweet.new
+    if params[:back]
+      @tweet = Tweet.new(tweet_params)
+    else
+      @tweet = Tweet.new
+    end
   end
 
   # GET /tweets/1/edit
@@ -38,6 +42,7 @@ class TweetsController < ApplicationController
   end
   def confirm
     @tweet = Tweet.new(tweet_params)
+    render :new if @tweet.invalid?
   end
 
   # PATCH/PUT /tweets/1
